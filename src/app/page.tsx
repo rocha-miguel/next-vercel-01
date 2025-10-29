@@ -22,8 +22,9 @@ export default function ProdutosPage() {
       if (!res.ok) throw new Error('Falha ao carregar produtos.');
       const data = await res.json();
       setProducts(data);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Erro Inesperado'
+      setError(message);
     } finally {
       setIsLoading(false);
     }
@@ -51,8 +52,9 @@ export default function ProdutosPage() {
       // Otimista: Atualiza a UI antes de refazer o fetch
       // ou simplesmente refaz o fetch para garantir consistência
       await fetchProducts(); 
-    } catch (err: any) {
-      setError(err.message);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Erro Inesperado'
+      setError(message);
     }
     setIsFormVisible(false);
     setEditingProduct(null);
@@ -66,8 +68,9 @@ export default function ProdutosPage() {
       if (!res.ok) throw new Error('Falha ao excluir produto.');
       // Atualiza a UI removendo o produto
       setProducts(products.filter(p => p.id !== id));
-    } catch (err: any) {
-      setError(err.message);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Erro Inesperado'
+      setError(message);
     }
   };
 
