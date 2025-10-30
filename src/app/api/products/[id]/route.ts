@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 interface Params { id: string; }
 
-export async function GET(request: Request, context: { params: Promise<Params> }) {
+export async function GET(context: { params: Promise<Params> }) {
     const params = await context.params
     const id = parseInt(params.id)
     const product = products.find((p) => p.id === id)
@@ -29,7 +29,7 @@ export async function PUT(request: Request, context: { params: Promise<Params> }
 
 }
 
-export async function DELETE(request: Request, context: {params: Promise<Params>}) {
+export async function DELETE(context: {params: Promise<Params>}) {
     const params = await context.params
     const id = parseInt(params.id)
     const index = products.findIndex((p) => p.id ===id)

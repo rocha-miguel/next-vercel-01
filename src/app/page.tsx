@@ -1,6 +1,5 @@
 // src/app/page.tsx (versão final e completa)
 'use client';
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from 'react';
 import { Product } from '@/lib/data';
 import { FaPlus } from 'react-icons/fa';
