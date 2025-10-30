@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 
 interface Params { id: string; }
 
-export async function GET(context: { params: Promise<Params> }) {
-    const params = await context.params
+export async function GET(request: { params: Promise<Params> }) {
+    const params = await request.params
     const id = parseInt(params.id)
     const product = products.find((p) => p.id === id)
 
