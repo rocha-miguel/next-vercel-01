@@ -1,9 +1,15 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { products } from "@/lib/data";
 
+interface RouteParams {
+    params: {
+        id: string;
+    };
+}
+
 export async function GET(
-    request: Request,
-    { params }: { params: { [key: string]: string } } 
+    request: NextRequest,
+    { params }: RouteParams
 ) {
     const id = parseInt(params.id);
     const product = products.find((p) => p.id === id);
@@ -16,8 +22,8 @@ export async function GET(
 }
 
 export async function PUT(
-    request: Request,
-    { params }: { params: { [key: string]: string } }
+    request: NextRequest,
+    { params }: RouteParams
 ) {
     const id = parseInt(params.id);
     const index = products.findIndex((p) => p.id === id);
@@ -33,8 +39,8 @@ export async function PUT(
 }
 
 export async function DELETE(
-    request: Request,
-    { params }: { params: { [key: string]: string } }
+    request: NextRequest,
+    { params }: RouteParams
 ) {
     const id = parseInt(params.id);
     const index = products.findIndex((p) => p.id === id);
