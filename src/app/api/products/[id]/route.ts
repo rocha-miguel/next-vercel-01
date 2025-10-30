@@ -4,6 +4,7 @@ import {  NextResponse } from "next/server";
 interface Params { id: string; }
 
 export async function GET(
+    request: Request,
     { params }: { params: Params }
 ) {
     const id = parseInt(params.id)
