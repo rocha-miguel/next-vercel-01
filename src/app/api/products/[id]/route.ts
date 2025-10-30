@@ -1,14 +1,9 @@
-import { Product, products } from "@/lib/data";
 import { NextResponse } from "next/server";
-
-interface Params {
-    id: string;
-}
-
+import { products } from "@/lib/data";
 
 export async function GET(
     request: Request,
-    { params }: { params: Params }
+    { params }: { params: { [key: string]: string } } 
 ) {
     const id = parseInt(params.id);
     const product = products.find((p) => p.id === id);
@@ -20,10 +15,9 @@ export async function GET(
     return NextResponse.json(product);
 }
 
-
 export async function PUT(
     request: Request,
-    { params }: { params: Params }
+    { params }: { params: { [key: string]: string } }
 ) {
     const id = parseInt(params.id);
     const index = products.findIndex((p) => p.id === id);
@@ -32,16 +26,15 @@ export async function PUT(
         return NextResponse.json({ error: "Produto não encontrado" }, { status: 404 });
     }
 
-    const updatedProduct: Product = await request.json();
+    const updatedProduct = await request.json();
     products[index] = { ...updatedProduct, id };
 
     return NextResponse.json(products[index]);
 }
 
-
 export async function DELETE(
     request: Request,
-    { params }: { params: Params }
+    { params }: { params: { [key: string]: string } }
 ) {
     const id = parseInt(params.id);
     const index = products.findIndex((p) => p.id === id);
@@ -51,6 +44,5 @@ export async function DELETE(
     }
 
     products.splice(index, 1);
-
     return NextResponse.json({ id });
 }
