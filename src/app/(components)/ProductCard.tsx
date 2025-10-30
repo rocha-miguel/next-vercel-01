@@ -3,8 +3,8 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 
 interface ProductCardProps {
   product: Product
-  onEdit: () => void
-  onDelete: () => void
+  onEdit?: () => void
+  onDelete?: () => void
 }
 
 export function ProductCard({ product, onEdit, onDelete }: ProductCardProps) {
